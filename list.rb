@@ -1,4 +1,4 @@
-class Element
+class List
 	attr_accessor :first,:last,:count
 	
 	def initialize first = nil, last = nil, count = 0
