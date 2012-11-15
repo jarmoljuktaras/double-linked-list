@@ -16,8 +16,71 @@ class List
 		@size+=1
 	end
 	
+	def addNodeAfter (number,value)
+		if(number>@size || number<1)
+			puts "have not such node"
+		else
+			n=1
+			node=@head
+			while n<number
+				node=node.nextnode
+				n+=1
+			end
+			if node.nextnode==nil
+				self.addNode(value)
+			else
+				new_node=Node.new(value,nil,nil)
+				new_node.nextnode=node.nextnode
+				new_node.prev=node
+				node.nextnode.prev=new_node
+				node.nextnode=new_node
+			end
+		@size+=1
+		end
+	end
+	
+	def addNodeBefore(number,value)
+		if(number>@size || number<1)
+			puts "have not such node"
+		else
+			n=1
+			node=@head
+			while n<number
+				node=node.nextnode
+				n+=1
+			end
+			if node.prev==nil
+				new_node=Node.new(value,nil,nil)
+				@head.prev=new_node
+				new_node.nextnode=@head
+				@head=new_node
+			else
+				new_node=Node.new(value,nil,nil)
+				new_node.nextnode=node
+				new_node.prev=node.prev
+				node.prev.nextnode=new_node
+				node.prev=new_node
+			end
+		@size+=1
+		end
+	end
+		
+	def putNode (number)
+		if(number>@size || number<1)
+			puts "have not such node"
+		else
+			n=1
+			node=@head
+			while n<number
+				node=node.nextnode
+			n+=1
+			end
+		puts "node ["+number.to_s+"] =" +node.to_s
+		end
+	end
+	
 	def delNode (number)
-		if(number>size || number<1)
+		if(number>@size || number<1)
 			puts "have not such node"
 		else
 			n=1
@@ -72,7 +135,18 @@ list.addNode(19)
 list.addNode(119)
 puts list
 list.delNode(3)
-puts list			
+puts list
+list.addNodeAfter(5,22)
+puts list
+list.addNodeBefore(1,44)
+puts list
+list.putNode(3)
+list.addNodeBefore(1,44)
+puts list
+
+
+
+ 			
 
 
 
