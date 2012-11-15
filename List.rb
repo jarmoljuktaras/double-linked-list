@@ -99,21 +99,17 @@ class List
 					node.nextnode.prev=nil
 					@head=node.nextnode
 				end
-				@size-=1
-				puts "Element " + number.to_s+" deleted"
 			end
 			if node.nextnode == nil
 				node.prev.nextnode=nil
-				@tail=node.prev	
-				@size-=1	
-				puts "Element " + number.to_s+" deleted"
+				@tail=node.prev		
 			end
 			if node.prev != nil && node.nextnode != nil
 				node.prev.nextnode=node.nextnode
 				node.nextnode.prev=node.prev
-				@size-=1
-				puts "Node " + number.to_s+" deleted"
 			end
+			puts "Node [" + number.to_s+"] deleted"
+			@size-=1
 		end
 	end
 					
