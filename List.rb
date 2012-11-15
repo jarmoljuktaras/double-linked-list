@@ -35,6 +35,7 @@ class List
 				node.nextnode.prev=new_node
 				node.nextnode=new_node
 			end
+		puts "Add Node="+value.to_s+ " after Node ["+number.to_s+"]"
 		@size+=1
 		end
 	end
@@ -61,6 +62,7 @@ class List
 				node.prev.nextnode=new_node
 				node.prev=new_node
 			end
+		puts "Add Node="+value.to_s+ " before Node ["+number.to_s+"]"
 		@size+=1
 		end
 	end
@@ -110,7 +112,7 @@ class List
 				node.prev.nextnode=node.nextnode
 				node.nextnode.prev=node.prev
 				@size-=1
-				puts "Element " + number.to_s+" deleted"
+				puts "Node " + number.to_s+" deleted"
 			end
 		end
 	end
@@ -136,12 +138,16 @@ list.addNode(119)
 puts list
 list.delNode(3)
 puts list
-list.addNodeAfter(5,22)
+list.addNodeAfter(4,22)
 puts list
-list.addNodeBefore(1,44)
+list.addNodeBefore(2,44)
 puts list
 list.putNode(3)
 list.addNodeBefore(1,44)
+puts list
+list.delNode(8)
+puts list
+list.delNode(1)
 puts list
 
 
