@@ -6,7 +6,7 @@ class List
 		@size=0
 	end
 	
-	def addNode (value)
+	def add_Node (value)
 		if @head.nil?
 			@head=@tail=Node.new(value,nil,nil)
 		else
@@ -15,94 +15,74 @@ class List
 		end
 		@size+=1
 	end
-	def getNode(number)
-		if (number<=@size && number>1)
+	def get_Node(number)
+		if (number<=@size && number>=1)
 			n=1
 			node=@head
 			while n<number
 				node=node.nextnode
 			n+=1
 			end	
-		end
 		node
+		end
 	end	
 	
-	def addNodeAfter (number,value)
-		if(number>@size || number<1)
-			puts "have not such node"
+	def add_Node_After (number,value)
+		node=get_Node(number)
+		if node.nextnode.nil?
+			self.addNode(value)
 		else
-			n=1
-			node=@head
-			while n<number
-				node=node.nextnode
-				n+=1
-			end
-			if node.nextnode==nil
-				self.addNode(value)
-			else
-				new_node=Node.new(value,nil,nil)
-				new_node.nextnode=node.nextnode
-				new_node.prevnode=node
-				node.nextnode.prevnode=new_node
-				node.nextnode=new_node
-			end
-		puts "Add Node="+value.to_s+ " after Node ["+number.to_s+"]"
-		@size+=1
+			new_node=Node.new(value,nil,nil)
+			new_node.nextnode=node.nextnode
+			new_node.prevnode=node
+			node.nextnode.prevnode=new_node
+			node.nextnode=new_node
 		end
+		@size+=1
 	end
 	
-	def addNodeBefore(number,value)
-		if(number>@size || number<1)
-			puts "have not such node"
+	def add_Node_Before(number,value)
+		node=get_Node(number)
+		if node.prevnode.nil?
+			new_node=Node.new(value,nil,nil)
+			@head.prevnode=new_node
+			new_node.nextnode=@head
+			@head=new_node
 		else
-			n=1
-			node=@head
-			while n<number
-				node=node.nextnode
-				n+=1
-			end
-			if node.prevnode.nil?
-				new_node=Node.new(value,nil,nil)
-				@head.prevnode=new_node
-				new_node.nextnode=@head
-				@head=new_node
-			else
-				new_node=Node.new(value,nil,nil)
-				new_node.nextnode=node
-				new_node.prevnode=node.prevnode
-				node.prevnode.nextnode=new_node
-				node.prevnode=new_node
-			end
-		puts "Add Node="+value.to_s+ " before Node ["+number.to_s+"]"
-		@size+=1
+			new_node=Node.new(value,nil,nil)
+			new_node.nextnode=node
+			new_node.prevnode=node.prevnode
+			node.prevnode.nextnode=new_node
+			node.prevnode=new_node
 		end
+		@size+=1
 	end
 		
-	def putNode (number)
-		puts "node ["+number.to_s+"] =" +getNode(number).to_s
+	def put_Node (number)
+		puts "node ["+number.to_s+"] =" +get_Node(number).to_s
 	end
 	
-	#def delNode (number)
-	#	node=Get_Node(number)
-	#	if node.prevnode.nil?
-	#		if (size == 1)
-	#			@head=nil
-	#				@tail=nil
-	#		else
-	#			node.nextnode.prevnode=nil
-	#			@head=node.nextnode
-	#		end
-	#	end
-	#	if node.nextnode.nil?
-	#		node.prevnode.nextnode=nil
-	#		@tail=node.prevnode		
-	#	end
-	#	if node.prevnode != nil && node.nextnode != nil
-	#		node.prevnode.nextnode=node.nextnode
-	#		node.nextnode.prevnode=node.prevnode
-	#	end
-	#	@size-=1
-	#end
+	def del_Node (number)
+		node=get_Node(number)
+		if node.prevnode.nil?
+			if (size == 1)
+				@head=nil
+					@tail=nil
+			else
+				node.nextnode.prevnode=nil
+				@head=node.nextnode
+			end
+		end
+		if node.nextnode.nil?
+			node.prevnode.nextnode=nil
+			@tail=node.prevnode		
+		end
+		if node.prevnode != nil && node.nextnode != nil
+			node.prevnode.nextnode=node.nextnode
+			node.nextnode.prevnode=node.prevnode
+		end
+		@size-=1
+	end
 					
 
 	def to_s
@@ -116,27 +96,26 @@ class List
 end
 
 list = List.new
-list.addNode(8)
-list.addNode(14)
-list.addNode(15)
-list.addNode(17)
-list.addNode(19)
-list.addNode(119)
+list.add_Node(8)
+list.add_Node(14)
+list.add_Node(15)
+list.add_Node(17)
+list.add_Node(19)
+list.add_Node(119)
 puts list
-#list.delNode(3)
-#puts list
-list.addNodeAfter(4,22)
+list.del_Node(3)
 puts list
-list.addNodeBefore(2,44)
+list.add_Node_After(4,22)
 puts list
-list.putNode(3)
-list.addNodeBefore(1,44)
+list.add_Node_Before(2,44)
 puts list
-putNode(4)
-#list.delNode(8)
-#puts list
-#list.delNode(1)
-#puts list
+list.put_Node(3)
+list.add_Node_Before(1,44)
+puts list
+list.del_Node(8)
+puts list
+list.del_Node(1)
+puts list
 
 
 

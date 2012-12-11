@@ -7,10 +7,10 @@ class Node
 	end
 		
 	def to_s
-		if(@value == nil)
-			return nil;
+		if(@value.nil?)
+			nil
 		else
-			return @value.to_s
+			@value.to_s
 		end
 	end
 end
