@@ -15,6 +15,17 @@ class List
 		end
 		@size+=1
 	end
+	def getNode(number)
+		if (number<=@size && number>1)
+			n=1
+			node=@head
+			while n<number
+				node=node.nextnode
+			n+=1
+			end	
+		end
+		node
+	end	
 	
 	def addNodeAfter (number,value)
 		if(number>@size || number<1)
@@ -50,7 +61,7 @@ class List
 				node=node.nextnode
 				n+=1
 			end
-			if node.prevnode==nil
+			if node.prevnode.nil?
 				new_node=Node.new(value,nil,nil)
 				@head.prevnode=new_node
 				new_node.nextnode=@head
@@ -68,50 +79,30 @@ class List
 	end
 		
 	def putNode (number)
-		if(number>@size || number<1)
-			puts "have not such node"
-		else
-			n=1
-			node=@head
-			while n<number
-				node=node.nextnode
-			n+=1
-			end
-		puts "node ["+number.to_s+"] =" +node.to_s
-		end
+		puts "node ["+number.to_s+"] =" +getNode(number).to_s
 	end
 	
-	def delNode (number)
-		if(number>@size || number<1)
-			puts "have not such node"
-		else
-			n=1
-			node=@head
-			while n<number
-				node=node.nextnode
-			n+=1
-			end
-			if node.prevnode == nil
-				if (size == 1)
-					@head=nil
-					@tail=nil
-				else
-					node.nextnode.prevnode=nil
-					@head=node.nextnode
-				end
-			end
-			if node.nextnode == nil
-				node.prevnode.nextnode=nil
-				@tail=node.prevnode		
-			end
-			if node.prevnode != nil && node.nextnode != nil
-				node.prevnode.nextnode=node.nextnode
-				node.nextnode.prevnode=node.prevnode
-			end
-			puts "Node [" + number.to_s+"] deleted"
-			@size-=1
-		end
-	end
+	#def delNode (number)
+	#	node=Get_Node(number)
+	#	if node.prevnode.nil?
+	#		if (size == 1)
+	#			@head=nil
+	#				@tail=nil
+	#		else
+	#			node.nextnode.prevnode=nil
+	#			@head=node.nextnode
+	#		end
+	#	end
+	#	if node.nextnode.nil?
+	#		node.prevnode.nextnode=nil
+	#		@tail=node.prevnode		
+	#	end
+	#	if node.prevnode != nil && node.nextnode != nil
+	#		node.prevnode.nextnode=node.nextnode
+	#		node.nextnode.prevnode=node.prevnode
+	#	end
+	#	@size-=1
+	#end
 					
 
 	def to_s
@@ -132,8 +123,8 @@ list.addNode(17)
 list.addNode(19)
 list.addNode(119)
 puts list
-list.delNode(3)
-puts list
+#list.delNode(3)
+#puts list
 list.addNodeAfter(4,22)
 puts list
 list.addNodeBefore(2,44)
@@ -141,10 +132,11 @@ puts list
 list.putNode(3)
 list.addNodeBefore(1,44)
 puts list
-list.delNode(8)
-puts list
-list.delNode(1)
-puts list
+putNode(4)
+#list.delNode(8)
+#puts list
+#list.delNode(1)
+#puts list
 
 
 
